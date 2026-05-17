@@ -1,0 +1,34 @@
+#include <stdexcept>
+#include <string>
+
+class notepad_exception : public std::runtime_error {
+public:
+    explicit notepad_exception(const std::string& message)
+        : std::runtime_error(message)
+    {
+    }
+};
+
+class file_not_found_exception : public notepad_exception {
+public:
+    explicit file_not_found_exception(const std::string& filename)
+        : notepad_exception(std::string("File not found: '") + filename + "'")
+    {
+    }
+};
+
+class file_read_exception : public notepad_exception {
+public:
+    explicit file_read_exception(const std::string& filename)
+        : notepad_exception(std::string("Failed to read file: '") + filename + "'")
+    {
+    }
+};
+
+class file_write_exception : public notepad_exception {
+public:
+    explicit file_write_exception(const std::string& filename)
+        : notepad_exception(std::string("Failed to write file: '") + filename + "'")
+    {
+    }
+};
