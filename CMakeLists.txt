@@ -27,3 +27,9 @@ add_executable(
         test_exceptions.cpp
         notepad_exception.h
 )
+
+add_custom_command(TARGET notepad POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/data/images
+        $<TARGET_FILE_DIR:notepad>/data/images
+)
